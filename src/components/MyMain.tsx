@@ -44,7 +44,7 @@ function MyMain() {
         </Button>
       </Form>
       <div>
-        {musics.map((music, i) => {
+        {musics.map((music) => {
           return <SingleData music={music} key={music.id} />;
         })}
       </div>

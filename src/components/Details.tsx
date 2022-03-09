@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Track } from "./Interfaces/index";
+import { Artist, Album } from "./Interfaces/index";
+
+interface Track {
+  id: number;
+  readable: boolean;
+  title: string;
+  title_short: string;
+  title_version: string;
+  link: string;
+  duration: number;
+  rank: number;
+  explicit_lyrics: boolean;
+  explicit_content_lyrics: number;
+  explicit_content_cover: number;
+  preview: string;
+  md5_image: string;
+  artist: Artist;
+  album: Album;
+  type: string;
+}
 
 function Details() {
   const params = useParams();
@@ -25,8 +44,16 @@ function Details() {
     }
   };
   return (
-    <div>
-      <h6>{singleData.title_short}</h6>
+    <div
+      className="d-flex justify-content-center align-content-center align-items-center"
+      style={{ height: "100vh" }}
+    >
+      <div className="d-flex justify-content-between align-items-center">
+        <div>
+          <h6 className="mb-0">{singleData.title_short}</h6>
+        </div>
+        <p className="mb-0 ml-5 pl-5">{singleData.duration}</p>
+      </div>
     </div>
   );
 }
