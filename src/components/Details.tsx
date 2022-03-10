@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Artist, Album } from "./Interfaces/index";
-
-interface Track {
-  id: number;
-  readable: boolean;
-  title: string;
-  title_short: string;
-  title_version: string;
-  link: string;
-  duration: number;
-  rank: number;
-  explicit_lyrics: boolean;
-  explicit_content_lyrics: number;
-  explicit_content_cover: number;
-  preview: string;
-  md5_image: string;
-  artist: Artist;
-  album: Album;
-  type: string;
-}
+import { TrackDetail } from "./Interfaces/index";
 
 function Details() {
   const params = useParams();
-  const [singleData, setSingleData] = useState<Track[] | null>(null);
+  const [trackDetails, setTrackDetails] = useState<TrackDetail[] | null>(null);
   useEffect(() => {
     fetchData();
   }, []);
@@ -34,7 +15,7 @@ function Details() {
       );
       if (res.ok) {
         let data = await res.json();
-        setSingleData(data);
+        setTrackDetails(data);
         console.log(data);
       } else {
         console.log("fetch single data error");
@@ -43,19 +24,16 @@ function Details() {
       console.log(error);
     }
   };
-  return (
+  return trackDetails ? (
     <div
       className="d-flex justify-content-center align-content-center align-items-center"
       style={{ height: "100vh" }}
     >
       <div className="d-flex justify-content-between align-items-center">
-        <div>
-          <h6 className="mb-0">{singleData.title_short}</h6>
-        </div>
-        <p className="mb-0 ml-5 pl-5">{singleData.duration}</p>
+        <h4>{trackDetails.disk_number}</h4>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default Details;

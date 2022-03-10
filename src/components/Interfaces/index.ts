@@ -17,6 +17,18 @@ export interface Track {
   type: string;
 }
 
+export interface TrackDetail extends Track {
+  isrc: string;
+  share: string;
+  track_position: number;
+  disk_number: number;
+  release_date: Date;
+  bpm: number;
+  gain: number;
+  available_countries: string[];
+  contributors: Artist[];
+}
+
 export interface Album {
   id: number;
   title: string;
