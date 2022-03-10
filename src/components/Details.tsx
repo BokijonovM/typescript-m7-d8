@@ -23,7 +23,7 @@ interface Track {
 
 function Details() {
   const params = useParams();
-  const [singleData, setSingleData] = useState<Track[]>([]);
+  const [singleData, setSingleData] = useState<Track[] | null>(null);
   useEffect(() => {
     fetchData();
   }, []);
